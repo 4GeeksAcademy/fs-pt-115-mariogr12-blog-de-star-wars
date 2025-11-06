@@ -14,7 +14,7 @@ export const Details = () => {
     return (
         <div className="container text-center mt-4">
             <div className="d-flex">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnx2mHFJ6WCHnhWVRO3Ge2BoqECvXwgmjhWw&s" style={{ width: "600px", heigh: "auto" }} />
+                <img src={store.characterImages[store.actualCharacter.properties.name]} style={{ width: "600px", heigh: "auto" }} />
                 <div className="ms-4">
                     <h1 className="text-start">{store.actualCharacter.properties.name}</h1>
                     <p className="text-start">{store.actualCharacter.description}</p>
@@ -60,7 +60,7 @@ export const Details = () => {
                     </div>
                 </div>
                 <div className="d-flex mt-4">
-                    <div className="border-end border-2 border-black border-end px-4">
+                    <div className="px-4">
                         <h4 className="text-start">Gender</h4>
                         <p className="text-start">{store.actualCharacter.properties.gender}</p>
                     </div>

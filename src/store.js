@@ -1,7 +1,21 @@
 export const initialStore = () => {
   return {
     characters: [],
-    actualCharacter: {},
+    actualCharacter: {
+      properties: {
+        name: "",
+        description: "",
+        gender: "",
+        eye_color: "",
+        hair_color: "",
+        height: "",
+        mass: "",
+        skin_color: "",
+        birth_year: "", 
+        gender: ""
+
+      }
+    },
     planets: [
       {
         name: "Tatooine",
