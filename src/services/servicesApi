@@ -1,3 +1,5 @@
+import storeReducer from "../store";
+
 export const getCharacters = async (dispatch) => {
     const response = await fetch("https://www.swapi.tech/api/people/", {
         method: "GET"
@@ -14,7 +16,26 @@ export const getCharacterDetails = async (id, dispatch) => {
     const data = await response.json()
     
     dispatch({type:'set_actual_character', payload: data.result})
-    console.log(data.result);
-    
+    // console.log(data.result);
+}
 
+export const getPlanets = async (dispatch) => {
+    const response = await fetch("https://www.swapi.tech/api/planets/",{
+        method: 'GET'
+    })
+    const data = await response.json()
+    console.log("datos character actual", data.results);
+    
+    dispatch({type:'set_planets', payload: data.results})
+}
+
+export const getPlanetDetails = async (id, dispatch) => {
+    const response = await fetch(`https://www.swapi.tech/api/planets/${id}/`,{
+        method: 'GET'
+    })
+    const data = await response.json()
+
+    dispatch({type:'set_actual_planet', payload: data.result})
+    console.log("datos planeta actual: ",data.result);
+    
 }

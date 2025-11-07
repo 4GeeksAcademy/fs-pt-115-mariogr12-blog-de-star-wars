@@ -11,16 +11,20 @@ export const Details = () => {
         getCharacterDetails(id, dispatch)
     }, [])
 
+    if (!store.actualCharacter?.properties?.eye_color) {
+        return <h1 className="text-center mt-5">Loading...</h1>;
+    }
+
     return (
-        <div className="container text-center mt-4">
-            <div className="d-flex">
+        <div className="container mt-4">
+            <div className="d-flex justify-content-center">
                 <img src={store.characterImages[store.actualCharacter.properties.name]} style={{ width: "600px", heigh: "auto" }} />
                 <div className="ms-4">
                     <h1 className="text-start">{store.actualCharacter.properties.name}</h1>
                     <p className="text-start">{store.actualCharacter.description}</p>
                 </div>
             </div>
-            <div className="d-flex mb-5">
+            <div className="d-flex mb-5 justify-content-center">
 
 
                 <div className="d-flex mt-4">
