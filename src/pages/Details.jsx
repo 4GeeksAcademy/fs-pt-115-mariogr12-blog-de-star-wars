@@ -18,7 +18,7 @@ export const Details = () => {
     return (
         <div className="container mt-4">
             <div className="d-flex justify-content-center">
-                <img src={store.characterImages[store.actualCharacter.properties.name]} style={{ width: "600px", heigh: "auto" }} />
+                <img src={store.characterImages[store.actualCharacter.properties.name]} style={{ width: "800px", height: "auto" }} />
                 <div className="ms-4">
                     <h1 className="text-start">{store.actualCharacter.properties.name}</h1>
                     <p className="text-start">{store.actualCharacter.description}</p>

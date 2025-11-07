@@ -2,6 +2,7 @@ export const initialStore = () => {
   return {
     characters: [],
     planets: [],
+    vehicles: [],
     actualCharacter: {
       properties: {
         name: "",
@@ -30,6 +31,17 @@ export const initialStore = () => {
         terrain: ""
       }
     },
+    actualVehicle: {
+      properties: {
+        name: "",
+        manufacturer: "",
+        cargo_capacity: "",
+        cost_in_credits: "",
+        length: "",
+        max_atmosphering_speed: "",
+        vehicle_class: ""
+      }
+    },
     favorites: [],
     characterImages: {
       "Luke Skywalker": "https://img.asmedia.epimg.net/resizer/v2/TVLRIW6H75EYPNO3KBHXFTISDA.jpg?auth=1d2278160753689784a2193684678b480f9df18a8fcb8bfe628520b78f5d0547&width=1472&height=828&smart=true",
@@ -54,6 +66,18 @@ export const initialStore = () => {
       "Naboo": "https://static.wikia.nocookie.net/esstarwars/images/5/50/Naboo.jpg/revision/latest?cb=20060318190228",
       "Coruscant": "https://i.ytimg.com/vi/80zVsoQxn-A/maxresdefault.jpg",
       "Kamino": "https://static.wikia.nocookie.net/esstarwars/images/3/39/KaminoSystem-CC.png/revision/latest?cb=20180617170606"
+    },
+    vehicleImages: {
+      "Sand Crawler": "https://static.wikia.nocookie.net/starwars/images/f/ff/Sandcrawler.png/revision/latest?cb=20130812001443",
+      "X-34 landspeeder": "https://lumiere-a.akamaihd.net/v1/images/E4D_IA_1136_6b8704fa.jpeg?region=237%2C0%2C1456%2C819",
+      "T-16 skyhopper": "https://static.wikia.nocookie.net/esstarwars/images/f/f2/T-16_skyhopper_-_SW_20.png/revision/latest?cb=20181201201037",
+      "TIE/LN starfighter": "https://diceandcardboard.com/content/images/2022/06/7D447526-4083-44FC-BAAD-FEBA5A3872B0.jpeg",
+      "Snowspeeder": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRflI9PbxLNKAWH-k50LTPak1_N5ve_lb8pow&s",
+      "AT-AT": "https://static.posters.cz/image/1300/67847.jpg",
+      "TIE bomber": "https://static.wikia.nocookie.net/esstarwars/images/1/17/TIE_Bomber_BF2.png/revision/latest?cb=20171101030957",
+      "AT-ST": "https://lumiere-a.akamaihd.net/v1/images/e6d_ia_5724_a150e6d4.jpeg?region=124%2C0%2C1424%2C802",
+      "Storm IV Twin-Pod cloud car": "https://i.ebayimg.com/images/g/qGAAAOSwxDhbVrsn/s-l400.jpg",
+      "Sail barge": "https://www.brickfanatics.com/wp-content/uploads/2023/03/Star-Wars-Return-of-the-Jedi-Jabbas-Sail-Barge.jpg"
     }
   }
 }
@@ -87,11 +111,23 @@ export default function storeReducer(store, action = {}) {
           i != action.payload
         ))
       }
-      case 'add_favorite':
-        return{
-          ...store,
-          favorites: [...store.favorites, action.payload]
-        }
+    case 'add_favorite':
+      return {
+        ...store,
+        favorites: [...store.favorites, action.payload]
+      }
+    case 'set_vehicles':
+      return {
+        ...store,
+        vehicles: action.payload
+      }
+    case 'set_actual_vehicle':
+      console.log('Este es el actual vehicle',store.actualVehicle);
+      
+      return {
+        ...store,
+        actualVehicle: action.payload
+      }
     default:
       throw Error('Unknown action.');
   }

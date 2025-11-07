@@ -18,7 +18,7 @@ export const PlanetDetails = () => {
     return (
         <div className="container mt-4">
             <div className="d-flex justify-content-center">
-                <img src={store.planetImages[store.actualPlanet.properties.name]} style={{ width: "600px", heigh: "auto" }} />
+                <img src={store.planetImages[store.actualPlanet.properties.name]} style={{ width: "800px", height: "auto" }} />
                 <div className="ms-4">
                     <h1 className="text-start">{store.actualPlanet.properties.name}</h1>
                     <p className="text-start">{store.actualPlanet.description}</p>
