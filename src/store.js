@@ -30,9 +30,7 @@ export const initialStore = () => {
         terrain: ""
       }
     },
-    favorites: [
-      "fav1", "fav2", "fav3"
-    ],
+    favorites: [],
     characterImages: {
       "Luke Skywalker": "https://img.asmedia.epimg.net/resizer/v2/TVLRIW6H75EYPNO3KBHXFTISDA.jpg?auth=1d2278160753689784a2193684678b480f9df18a8fcb8bfe628520b78f5d0547&width=1472&height=828&smart=true",
       "R2-D2": "https://lumiere-a.akamaihd.net/v1/images/r2-d2-main_f315b094.jpeg?region=273%2C0%2C951%2C536",
@@ -77,10 +75,22 @@ export default function storeReducer(store, action = {}) {
         ...store,
         planets: action.payload
       }
-      case 'set_actual_planet':
-        return {
+    case 'set_actual_planet':
+      return {
+        ...store,
+        actualPlanet: action.payload
+      }
+    case 'delete_favorite':
+      return {
+        ...store,
+        favorites: store.favorites.filter((favorite, i) => (
+          i != action.payload
+        ))
+      }
+      case 'add_favorite':
+        return{
           ...store,
-          actualPlanet: action.payload
+          favorites: [...store.favorites, action.payload]
         }
     default:
       throw Error('Unknown action.');

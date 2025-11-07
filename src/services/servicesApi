@@ -24,7 +24,7 @@ export const getPlanets = async (dispatch) => {
         method: 'GET'
     })
     const data = await response.json()
-    console.log("datos character actual", data.results);
+    // console.log("datos character actual", data.results);
     
     dispatch({type:'set_planets', payload: data.results})
 }
@@ -36,6 +36,6 @@ export const getPlanetDetails = async (id, dispatch) => {
     const data = await response.json()
 
     dispatch({type:'set_actual_planet', payload: data.result})
-    console.log("datos planeta actual: ",data.result);
+    // console.log("datos planeta actual: ",data.result);
     
 }

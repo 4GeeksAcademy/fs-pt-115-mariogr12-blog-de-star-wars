@@ -5,6 +5,13 @@ export const Navbar = () => {
 
 	const { dispatch, store } = useGlobalReducer()
 
+	const deleteFavorite = (index) => {
+		dispatch({
+			type: "delete_favorite",
+			payload: index
+		})
+	}
+
 	return (
 		<nav className="navbar navbar-light bg-black">
 			<div className="container">
@@ -24,14 +31,28 @@ export const Navbar = () => {
 						</a>
 
 						<ul className="dropdown-menu">
-							{store.favorites.map((favorite, index) => (
-								<li key={index}>
-									<div className="d-flex">
-										<a className="dropdown-item">{favorite}</a>
-										<button className="btn"><i className="bi bi-trash3"></i></button>
-									</div>
-								</li>
-							))}
+							{store.favorites.length < 1 ? (
+								<li>No favorites yet</li>
+							) : (
+								store.favorites.map((favorite, index) => (
+									<li key={index}>
+										<div className="d-flex">
+											<a 
+											className="dropdown-item"
+											onClick={(e)=>{
+												e.stopPropagation()
+											}}
+											>{favorite}</a>
+											<button
+												className="btn"
+												onClick={(e) => {
+													e.stopPropagation()
+													deleteFavorite(index)
+												}}
+											><i className="bi bi-trash3"></i></button>
+										</div>
+									</li>
+								)))}
 						</ul>
 					</div>
 				</div>

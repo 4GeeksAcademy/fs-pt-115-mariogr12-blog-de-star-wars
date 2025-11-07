@@ -18,6 +18,15 @@ export const Home = () => {
 		return <h1 className="text-center mt-5">Loading...</h1>;
 	}
 
+	const addFavorite = (name) => {
+		if (!store.favorites.includes(name)) {
+			dispatch({
+				type: 'add_favorite',
+				payload: name
+			})
+		}
+	}
+
 	return (
 		<div className="container mt-5">
 
@@ -56,7 +65,10 @@ export const Home = () => {
 									>Learn more!</button>
 
 								</Link>
-								<button className="btn btn-outline-warning"><i className="bi bi-heart"></i></button>
+								<button
+									className='btn btn-outline-warning'
+									onClick={() => { addFavorite(person.name) }}
+								><i className={`${store.favorites.includes(person.name) ? "bi bi-heart-fill" : "bi bi-heart"}`}></i></button>
 							</div>
 						</div>
 					</div>
@@ -75,34 +87,37 @@ export const Home = () => {
 							<h5 className="card-title mb-4">{planet.name}</h5>
 							<div className="d-flex justify-content-between">
 								<Link to={`planet/details/${planet.uid}`}>
-									<button className="btn btn-outline-primary">Learn more!</button>
+									<button
+										className="btn btn-outline-primary"
+										onClick={() => {
+											dispatch({
+												type: "set_actual_planet",
+												payload: {
+													properties: {
+														name: planet.result?.properties?.name || "",
+														gravity: planet.result?.properties?.gravity || "",
+														diameter: planet.result?.properties?.diameter || "",
+														climate: planet.result?.properties?.climate || "",
+														orbital_period: planet.result?.properties?.orbital_period || "",
+														population: planet.result?.properties?.population || "",
+														rotation_period: planet.result?.properties?.rotation_period || "",
+														surface_water: planet.result?.properties?.surface_water || "",
+														terrain: planet.result?.properties?.terrain || ""
+													}
+												}
+											});
+										}}>Learn more!</button>
 								</Link>
 								<button
 									className="btn btn-outline-warning"
-									onClick={() => {
-										dispatch({
-											type: "set_actual_planet",
-											payload: {
-												properties: {
-													name: planet.result.properties.name || "",
-													gravity: planet.result.properties.gravity || "",
-													diameter: planet.result.properties.diameter || "",
-													climate: planet.result.properties.climate || "",
-													orbital_period: planet.result.properties.orbital_period || "",
-													population: planet.result.properties.population || "",
-													rotation_period: planet.result.properties.rotation_period || "",
-													surface_water: planet.result.properties.surface_water || "",
-													terrain: planet.result.properties.terrain || ""
-												}
-											}
-										})
-									}}><i className="bi bi-heart"></i></button>
+									onClick={() => { addFavorite(planet.name) }}
+								><i className={`${store.favorites.includes(planet.name) ? "bi bi-heart-fill" : "bi bi-heart"}`}></i></button>
 							</div>
 						</div>
 					</div>
 				))}
 			</div>
 
-		</div>
+		</div >
 	);
 }; 
